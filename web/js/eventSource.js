@@ -15,7 +15,8 @@ eventSource.onerror = (error) => {
   console.log(error)
   source$.error(error)
 }
-eventSource.addEventListener('done', () => {
+eventSource.addEventListener('done', (event) => {
+  console.log(event.data)
   source$.complete()
 })
 

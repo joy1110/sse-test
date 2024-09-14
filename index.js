@@ -38,11 +38,9 @@ app.get('/events', (req, res) => {
     });
 
     streamSource$.pipe(last()).subscribe(() => {
-      // For clients who using eventSource, connection must be closed by them
-      // Otherwise, an error will be thrown by eventSource
-      // Here we send a custom event to tell clients that the stream is done
-      res.write('event: done\n')
-      res.write('data: \n\n')
+      // For clients who using fetch,
+      // connection should be closed by server bu calling res.end()
+      res.end('[DONE]')
     });
   } catch (error) {
     console.error(error);
